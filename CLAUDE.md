@@ -39,7 +39,20 @@ These rules are non-negotiable and apply to every change made in this repository
 
 ---
 
-## 4. Database — The Source of Truth
+## 4. Responsive Design — PC First, Mobile Friendly
+
+- **Desktop is the primary target.** Layouts are designed for wide screens first (1280px+ baseline). Do not optimise for mobile at the expense of the desktop experience.
+- Mobile must never be broken. Use responsive CSS (flexbox/grid + media queries) so the UI is usable on smaller screens, but simplified — not identical.
+- Media query breakpoints:
+  - Default (no query): desktop ≥ 1024px
+  - `@media (max-width: 1023px)`: tablet adjustments
+  - `@media (max-width: 640px)`: mobile adjustments
+- On mobile, complex data tables may collapse to card/list views. Navigation may move to a bottom bar or hamburger menu. Core functionality must remain accessible.
+- Touch targets must be at least 44×44px on mobile even if visually smaller on desktop.
+
+---
+
+## 5. Database — The Source of Truth
 
 - **The database is king.** All application state that matters lives in Supabase, not in React state, localStorage, or sessionStorage.
 - **No blob/JSON columns for structured data.** Every discrete piece of information gets its own typed column. If you need to store a list of related items, use a join table.
@@ -52,7 +65,7 @@ These rules are non-negotiable and apply to every change made in this repository
 
 ---
 
-## 5. General Coding Standards
+## 6. General Coding Standards
 
 - React functional components and hooks only — no class components.
 - No `any` casting or `eslint-disable` comments without a written justification in the same line.
