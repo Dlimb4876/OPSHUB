@@ -5,22 +5,49 @@
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
-.product-table-container h2 {
-  font-size: 1.5rem;
+/* ── Table header (title + add button) ── */
+.table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 20px;
+  gap: 16px;
+}
+
+.table-header h2 {
+  font-size: 1.5rem;
   color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
 }
 
-.empty-state {
-  text-align: center;
-  padding: 40px 20px;
-  color: #999;
+.product-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #667eea;
+  color: white;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 2px 10px;
+  min-width: 28px;
 }
 
-.empty-state p {
-  font-size: 1.1rem;
+/* ── Row-level error ── */
+.row-error {
+  background: #fff3f3;
+  border: 1px solid #ffcdd2;
+  border-radius: 6px;
+  color: #c62828;
+  padding: 10px 16px;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
 }
 
+/* ── Table wrapper ── */
 .table-wrapper {
   overflow-x: auto;
 }
@@ -28,7 +55,6 @@
 .product-table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 0;
 }
 
 .product-table thead {
@@ -37,24 +63,26 @@
 }
 
 .product-table th {
-  padding: 15px;
+  padding: 13px 15px;
   text-align: left;
   font-weight: 600;
   color: #333;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  white-space: nowrap;
 }
 
 .product-table td {
-  padding: 15px;
+  padding: 12px 15px;
   border-bottom: 1px solid #f0f0f0;
   color: #555;
   font-size: 0.95rem;
+  vertical-align: middle;
 }
 
 .product-table tbody tr {
-  transition: background-color 0.2s ease;
+  transition: background-color 0.15s ease;
 }
 
 .product-table tbody tr:hover {
@@ -65,35 +93,81 @@
   background-color: #f0f4ff;
 }
 
+.product-table tbody tr.new-row {
+  background-color: #f0fff4;
+}
+
+/* ── Edit inputs ── */
 .edit-input {
   width: 100%;
-  padding: 6px 8px;
+  padding: 7px 10px;
   border: 2px solid #667eea;
-  border-radius: 4px;
-  font-size: 0.95rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
   font-family: inherit;
+  background: white;
+  box-sizing: border-box;
 }
 
 .edit-input:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
 }
 
+.edit-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── Empty / loading states ── */
+.empty-cell,
+.loading-cell {
+  text-align: center;
+  padding: 50px 20px;
+  color: #aaa;
+  font-size: 1rem;
+}
+
+.loading-cell {
+  font-style: italic;
+}
+
+/* ── Actions column ── */
 .actions {
   display: flex;
   gap: 8px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
+/* ── Buttons ── */
 .btn {
-  padding: 6px 12px;
+  padding: 6px 14px;
   border: none;
-  border-radius: 4px;
-  font-size: 0.85rem;
+  border-radius: 5px;
+  font-size: 0.82rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.15s ease, transform 0.1s ease, opacity 0.15s;
   white-space: nowrap;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.btn-add {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 8px 18px;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.btn-add:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 .btn-edit {
@@ -101,7 +175,7 @@
   color: white;
 }
 
-.btn-edit:hover {
+.btn-edit:hover:not(:disabled) {
   background-color: #5568d3;
   transform: translateY(-1px);
 }
@@ -111,7 +185,7 @@
   color: white;
 }
 
-.btn-delete:hover {
+.btn-delete:hover:not(:disabled) {
   background-color: #ff5252;
   transform: translateY(-1px);
 }
@@ -121,7 +195,7 @@
   color: white;
 }
 
-.btn-save:hover {
+.btn-save:hover:not(:disabled) {
   background-color: #40c057;
   transform: translateY(-1px);
 }
@@ -131,14 +205,25 @@
   color: white;
 }
 
-.btn-cancel:hover {
+.btn-cancel:hover:not(:disabled) {
   background-color: #97a0a7;
   transform: translateY(-1px);
 }
 
+/* ── Responsive ── */
 @media (max-width: 768px) {
   .product-table-container {
     padding: 20px;
+  }
+
+  .table-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-add {
+    width: 100%;
+    text-align: center;
   }
 
   .product-table th,
@@ -148,7 +233,7 @@
   }
 
   .product-table th {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
   }
 
   .actions {
@@ -157,5 +242,6 @@
 
   .btn {
     width: 100%;
+    text-align: center;
   }
 }
