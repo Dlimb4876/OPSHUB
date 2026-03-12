@@ -34,27 +34,33 @@ const ProductManager = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchData();
+    let cancelled = false;
+
+    const loadData = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const [productsResult, familiesData] = await Promise.all([
+          supabase.from('products').select('*').order('created_at', { ascending: false }),
+          fetchProductFamilies(),
+        ]);
+        if (cancelled) return;
+        if (productsResult.error) {
+          setError(productsResult.error.message);
+        } else {
+          setProducts(productsResult.data.map(mapFromDb));
+        }
+        setFamilies(familiesData);
+      } catch (e) {
+        if (!cancelled) console.error('Failed to fetch data:', e.message);
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    };
+
+    loadData();
+    return () => { cancelled = true; };
   }, []);
-
-  const fetchData = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      await Promise.all([fetchProducts(), fetchFamilies()]);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const fetchFamilies = async () => {
-    try {
-      const data = await fetchProductFamilies();
-      setFamilies(data);
-    } catch (e) {
-      console.error('Failed to fetch product families:', e.message);
-    }
-  };
 
   const fetchProducts = async () => {
     const { data, error } = await supabase
