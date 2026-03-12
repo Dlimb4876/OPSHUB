@@ -1,0 +1,27 @@
+.productFamilyDropdown {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-family: var(--font-family-base);
+  cursor: pointer;
+  background-color: var(--color-white);
+  color: var(--color-gray-900);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.productFamilyDropdown:hover:not(:disabled) {
+  border-color: var(--color-blue-primary);
+}
+
+.productFamilyDropdown:focus {
+  outline: none;
+  border-color: var(--color-blue-primary);
+  box-shadow: 0 0 0 3px var(--color-blue-light);
+}
+
+.productFamilyDropdown:disabled {
+  background-color: var(--color-gray-100);
+  cursor: not-allowed;
+  color: var(--color-gray-500);
+}

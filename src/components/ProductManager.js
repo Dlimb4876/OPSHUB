@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProductTable from './ProductTable';
 import { supabase } from '../supabaseClient';
+import { fetchProductFamilies } from '../services/productFamilyService';
 import '../styles/ProductManager.css';
 
 const mapFromDb = (row) => ({
@@ -28,16 +29,34 @@ const mapToDb = (product) => ({
 const ProductManager = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
+  const [families, setFamilies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchProducts();
+    fetchData();
   }, []);
 
-  const fetchProducts = async () => {
+  const fetchData = async () => {
     setLoading(true);
     setError(null);
+    try {
+      await Promise.all([fetchProducts(), fetchFamilies()]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchFamilies = async () => {
+    try {
+      const data = await fetchProductFamilies();
+      setFamilies(data);
+    } catch (e) {
+      console.error('Failed to fetch product families:', e.message);
+    }
+  };
+
+  const fetchProducts = async () => {
     const { data, error } = await supabase
       .from('products')
       .select('*')
@@ -48,7 +67,6 @@ const ProductManager = () => {
     } else {
       setProducts(data.map(mapFromDb));
     }
-    setLoading(false);
   };
 
   const addProduct = async (product) => {
@@ -105,6 +123,7 @@ const ProductManager = () => {
         )}
         <ProductTable
           products={products}
+          families={families}
           loading={loading}
           onAddProduct={addProduct}
           onDeleteProduct={deleteProduct}
