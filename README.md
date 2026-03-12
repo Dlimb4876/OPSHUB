@@ -72,14 +72,22 @@ npm run deploy
 
 ## Data Storage
 
-All product data is stored in your browser's local storage, so it persists between sessions without needing a backend server.
+All product data is stored in Supabase with Row-Level Security (RLS) enforcement. Data is retrieved and persisted to the database through API calls.
+
+## Live Application
+
+The app is deployed to GitHub Pages at:
+**https://Dlimb4876.github.io/OPSHUB/**
+
+Make sure to use the full URL with trailing slash for proper routing.
 
 ## Technologies Used
 
-- **React 18**: UI library
+- **React 18**: UI library with React Router v7 for client-side routing
+- **React Router**: Client-side navigation with basename support for GitHub Pages subdirectory
 - **React Scripts**: Build and development tools
+- **Supabase**: Backend database with RLS authentication
 - **CSS3**: Styling with responsive design
-- **Local Storage API**: Client-side data persistence
 
 ## License
 
