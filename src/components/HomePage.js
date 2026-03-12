@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/HomePage.css';
 
-const HomePage = ({ onNavigate }) => {
+const HomePage = () => {
   const [expandedSection, setExpandedSection] = useState(null);
 
   const sections = [
@@ -41,11 +42,6 @@ const HomePage = ({ onNavigate }) => {
     setExpandedSection(expandedSection === sectionId ? null : sectionId);
   };
 
-  const handleItemClick = (itemId) => {
-    if (onNavigate) {
-      onNavigate(itemId);
-    }
-  };
 
   return (
     <div className="home-page">
@@ -80,13 +76,13 @@ const HomePage = ({ onNavigate }) => {
               {expandedSection === section.id && (
                 <div className="items-container">
                   {section.items.map((item) => (
-                    <button
+                    <Link
                       key={item.id}
+                      to={`/${item.id}`}
                       className="item-button"
-                      onClick={() => handleItemClick(item.id)}
                     >
                       {item.label}
-                    </button>
+                    </Link>
                   ))}
                 </div>
               )}

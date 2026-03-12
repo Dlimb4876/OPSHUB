@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ProductTable from './ProductTable';
 import { supabase } from '../supabaseClient';
 import '../styles/ProductManager.css';
@@ -24,7 +25,8 @@ const mapToDb = (product) => ({
   overhaul_time: product.overhaulTime,
 });
 
-const ProductManager = ({ onBack }) => {
+const ProductManager = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -87,11 +89,9 @@ const ProductManager = ({ onBack }) => {
   return (
     <div className="product-manager">
       <header className="manager-header">
-        {onBack && (
-          <button className="back-button" onClick={onBack}>
-            ← Back
-          </button>
-        )}
+        <button className="back-button" onClick={() => navigate('/')}>
+          ← Back
+        </button>
         <h1>Product Manager</h1>
         <p className="subtitle">Manage your product inventory</p>
       </header>

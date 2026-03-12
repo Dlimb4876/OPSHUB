@@ -1,55 +1,23 @@
 import './App.css';
-import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import ProductManager from './components/ProductManager';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('home');
-  const [previousPage, setPreviousPage] = useState(null);
-
-  const handleNavigate = (itemId) => {
-    setPreviousPage('home');
-
-    // Map item IDs to pages
-    const pageMap = {
-      'product-mgmt': 'product-manager',
-      'new-product': 'new-product',
-      'product-family': 'product-family',
-      'production-capacity': 'production-capacity',
-      'me-capacity': 'me-capacity',
-      'projects-capacity': 'projects-capacity',
-      'batch-scheduling': 'batch-scheduling',
-      'product-schedule': 'product-schedule',
-      'work-area-schedule': 'work-area-schedule',
-    };
-
-    setCurrentPage(pageMap[itemId] || 'home');
-  };
-
-  const handleBack = () => {
-    setCurrentPage(previousPage || 'home');
-    setPreviousPage(null);
-  };
-
-  if (currentPage === 'home') {
-    return (
-      <div className="App">
-        <HomePage onNavigate={handleNavigate} />
-      </div>
-    );
-  }
-
-  if (currentPage === 'product-manager') {
-    return (
-      <div className="App">
-        <ProductManager onBack={handleBack} />
-      </div>
-    );
-  }
-
   return (
     <div className="App">
-      <HomePage onNavigate={handleNavigate} />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/product-mgmt" element={<ProductManager />} />
+        <Route path="/new-product" element={<div>New Product Coming Soon</div>} />
+        <Route path="/product-family" element={<div>Product Family Coming Soon</div>} />
+        <Route path="/production-capacity" element={<div>Production Capacity Coming Soon</div>} />
+        <Route path="/me-capacity" element={<div>ME Capacity Coming Soon</div>} />
+        <Route path="/projects-capacity" element={<div>Projects Capacity Coming Soon</div>} />
+        <Route path="/batch-scheduling" element={<div>Batch Scheduling Coming Soon</div>} />
+        <Route path="/product-schedule" element={<div>Product Schedule Coming Soon</div>} />
+        <Route path="/work-area-schedule" element={<div>Work Area Schedule Coming Soon</div>} />
+      </Routes>
     </div>
   );
 }
