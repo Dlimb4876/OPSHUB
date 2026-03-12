@@ -103,7 +103,7 @@ const ProductFamilyAdmin = () => {
   };
 
   const handleDelete = async (id) => {
-    if (!confirm('Are you sure you want to delete this product family?')) return;
+    if (!window.confirm('Are you sure you want to delete this product family?')) return;
 
     try {
       await deleteProductFamily(id);
