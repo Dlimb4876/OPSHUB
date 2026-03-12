@@ -1,8 +1,8 @@
 .product-table-container {
-  background: white;
-  border-radius: 12px;
-  padding: 30px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-2xl);
+  box-shadow: var(--shadow-lg);
 }
 
 /* ── Table header (title + add button) ── */
@@ -10,46 +10,50 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
-  gap: 16px;
+  margin-bottom: var(--spacing-xl);
+  gap: var(--spacing-lg);
 }
 
 .table-header h2 {
-  font-size: 1.5rem;
-  color: #333;
+  font-size: var(--font-size-2xl);
+  color: var(--color-gray-900);
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--spacing-md);
   margin: 0;
+  font-weight: var(--font-weight-semibold);
 }
 
 .product-count {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: #667eea;
-  color: white;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 2px 10px;
+  background: var(--color-blue-primary);
+  color: var(--color-white);
+  border-radius: var(--radius-2xl);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  padding: var(--spacing-sm) var(--spacing-md);
   min-width: 28px;
 }
 
 /* ── Row-level error ── */
 .row-error {
-  background: #fff3f3;
-  border: 1px solid #ffcdd2;
-  border-radius: 6px;
-  color: #c62828;
-  padding: 10px 16px;
-  margin-bottom: 12px;
-  font-size: 0.9rem;
+  background: var(--color-error-light);
+  border: 1px solid var(--color-error);
+  border-radius: var(--radius-md);
+  color: var(--color-error);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
 }
 
 /* ── Table wrapper ── */
 .table-wrapper {
   overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-gray-200);
 }
 
 .product-table {
@@ -58,167 +62,183 @@
 }
 
 .product-table thead {
-  background-color: #f8f9fa;
-  border-bottom: 2px solid #e0e0e0;
+  background-color: var(--color-gray-50);
+  border-bottom: 2px solid var(--color-gray-200);
 }
 
 .product-table th {
-  padding: 13px 15px;
+  padding: var(--spacing-md);
   text-align: left;
-  font-weight: 600;
-  color: #333;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-900);
+  font-size: var(--font-size-sm);
+  text-transform: capitalize;
   white-space: nowrap;
+  letter-spacing: 0.3px;
 }
 
 .product-table td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #f0f0f0;
-  color: #555;
-  font-size: 0.95rem;
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--color-gray-100);
+  color: var(--color-gray-700);
+  font-size: var(--font-size-sm);
   vertical-align: middle;
 }
 
 .product-table tbody tr {
-  transition: background-color 0.15s ease;
+  transition: background-color var(--transition-fast);
 }
 
 .product-table tbody tr:hover {
-  background-color: #f9f9f9;
+  background-color: var(--color-gray-50);
 }
 
 .product-table tbody tr.editing {
-  background-color: #f0f4ff;
+  background-color: var(--color-blue-light);
 }
 
 .product-table tbody tr.new-row {
-  background-color: #f0fff4;
+  background-color: var(--color-success-light);
 }
 
 /* ── Edit inputs ── */
 .edit-input {
   width: 100%;
-  padding: 7px 10px;
-  border: 2px solid #667eea;
-  border-radius: 5px;
-  font-size: 0.9rem;
-  font-family: inherit;
-  background: white;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family-base);
+  background: var(--color-white);
+  color: var(--color-gray-900);
   box-sizing: border-box;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.edit-input::placeholder {
+  color: var(--color-gray-400);
+}
+
+.edit-input:hover:not(:disabled) {
+  border-color: var(--color-blue-primary);
 }
 
 .edit-input:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+  border-color: var(--color-blue-primary);
+  box-shadow: 0 0 0 3px var(--color-blue-light);
 }
 
 .edit-input:disabled {
-  opacity: 0.6;
+  background-color: var(--color-gray-100);
   cursor: not-allowed;
+  color: var(--color-gray-500);
 }
 
 /* ── Empty / loading states ── */
 .empty-cell,
 .loading-cell {
   text-align: center;
-  padding: 50px 20px;
-  color: #aaa;
-  font-size: 1rem;
+  padding: var(--spacing-3xl) var(--spacing-lg);
+  color: var(--color-gray-400);
+  font-size: var(--font-size-base);
 }
 
 .loading-cell {
   font-style: italic;
+  color: var(--color-gray-500);
 }
 
 /* ── Actions column ── */
 .actions {
   display: flex;
-  gap: 8px;
+  gap: var(--spacing-sm);
   flex-wrap: nowrap;
 }
 
 /* ── Buttons ── */
 .btn {
-  padding: 6px 14px;
+  padding: var(--spacing-xs) var(--spacing-md);
   border: none;
-  border-radius: 5px;
-  font-size: 0.82rem;
-  font-weight: 600;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
   cursor: pointer;
-  transition: background-color 0.15s ease, transform 0.1s ease, opacity 0.15s;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
   white-space: nowrap;
 }
 
 .btn:disabled {
-  opacity: 0.5;
+  opacity: 0.6;
   cursor: not-allowed;
   transform: none !important;
 }
 
 .btn-add {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 8px 18px;
-  font-size: 0.9rem;
+  background: var(--color-blue-primary);
+  color: var(--color-white);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: var(--font-size-sm);
   flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-add:hover:not(:disabled) {
-  opacity: 0.9;
+  background: var(--color-blue-dark);
   transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 .btn-edit {
-  background-color: #667eea;
-  color: white;
+  background-color: var(--color-blue-primary);
+  color: var(--color-white);
 }
 
 .btn-edit:hover:not(:disabled) {
-  background-color: #5568d3;
+  background-color: var(--color-blue-dark);
   transform: translateY(-1px);
 }
 
 .btn-delete {
-  background-color: #ff6b6b;
-  color: white;
+  background-color: var(--color-error);
+  color: var(--color-white);
 }
 
 .btn-delete:hover:not(:disabled) {
-  background-color: #ff5252;
+  background-color: #dc2626;
   transform: translateY(-1px);
 }
 
 .btn-save {
-  background-color: #51cf66;
-  color: white;
+  background-color: var(--color-success);
+  color: var(--color-white);
 }
 
 .btn-save:hover:not(:disabled) {
-  background-color: #40c057;
+  background-color: #15803d;
   transform: translateY(-1px);
 }
 
 .btn-cancel {
-  background-color: #adb5bd;
-  color: white;
+  background-color: var(--color-gray-400);
+  color: var(--color-white);
 }
 
 .btn-cancel:hover:not(:disabled) {
-  background-color: #97a0a7;
+  background-color: var(--color-gray-500);
   transform: translateY(-1px);
 }
 
 /* ── Responsive ── */
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   .product-table-container {
-    padding: 20px;
+    padding: var(--spacing-xl);
   }
 
   .table-header {
     flex-direction: column;
     align-items: flex-start;
+    margin-bottom: var(--spacing-lg);
   }
 
   .btn-add {
@@ -228,20 +248,48 @@
 
   .product-table th,
   .product-table td {
-    padding: 10px;
-    font-size: 0.85rem;
+    padding: var(--spacing-md);
+    font-size: var(--font-size-sm);
   }
 
   .product-table th {
-    font-size: 0.78rem;
+    font-size: var(--font-size-sm);
   }
 
   .actions {
     flex-direction: column;
+    gap: var(--spacing-sm);
   }
 
   .btn {
     width: 100%;
     text-align: center;
+    padding: var(--spacing-sm) var(--spacing-sm);
+  }
+}
+
+@media (max-width: 640px) {
+  .product-table-container {
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+  }
+
+  .table-header {
+    gap: var(--spacing-sm);
+  }
+
+  .table-header h2 {
+    font-size: var(--font-size-xl);
+    gap: var(--spacing-sm);
+  }
+
+  .product-table th,
+  .product-table td {
+    padding: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+  }
+
+  .product-table th {
+    font-size: var(--font-size-sm);
   }
 }
