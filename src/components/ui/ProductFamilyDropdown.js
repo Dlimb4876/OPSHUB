@@ -1,5 +1,5 @@
 import React from 'react';
-import './ProductFamilyDropdown.module.css';
+import styles from './ProductFamilyDropdown.module.css';
 
 const ProductFamilyDropdown = ({
   value,
@@ -15,7 +15,7 @@ const ProductFamilyDropdown = ({
       onChange={(e) => onChange(e.target.value)}
       disabled={disabled}
       autoFocus={autoFocus}
-      className="product-family-dropdown"
+      className={styles.productFamilyDropdown}
     >
       <option value="">{placeholder}</option>
       {families.map((family) => (

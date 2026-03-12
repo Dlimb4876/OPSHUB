@@ -1,12 +1,14 @@
 .productFamilyDropdown {
+  width: 100%;
   padding: var(--spacing-sm) var(--spacing-md);
   border: 1px solid var(--color-gray-300);
   border-radius: var(--radius-md);
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   font-family: var(--font-family-base);
   cursor: pointer;
   background-color: var(--color-white);
   color: var(--color-gray-900);
+  box-sizing: border-box;
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
