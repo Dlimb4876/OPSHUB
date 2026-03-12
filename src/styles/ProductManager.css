@@ -1,0 +1,40 @@
+.product-manager {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40px 20px;
+}
+
+.manager-header {
+  text-align: center;
+  color: white;
+  margin-bottom: 40px;
+}
+
+.manager-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.manager-header .subtitle {
+  font-size: 1.1rem;
+  font-weight: 300;
+  opacity: 0.9;
+}
+
+.manager-content {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .manager-header h1 {
+    font-size: 2rem;
+  }
+
+  .manager-header .subtitle {
+    font-size: 1rem;
+  }
+}
