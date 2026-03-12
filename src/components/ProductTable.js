@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ProductFamilyDropdown from './ui/ProductFamilyDropdown';
 import '../styles/ProductTable.css';
 
 const EMPTY_ROW = {
@@ -19,7 +20,7 @@ const FIELDS = [
   { key: 'overhaulTime',   label: 'Overhaul Time',    placeholder: 'e.g. 30 days' },
 ];
 
-const ProductTable = ({ products, loading, onAddProduct, onDeleteProduct, onUpdateProduct }) => {
+const ProductTable = ({ products, families = [], loading, onAddProduct, onDeleteProduct, onUpdateProduct }) => {
   const [editingId, setEditingId] = useState(null); // null | 'new' | uuid
   const [editData, setEditData] = useState({});
   const [saving, setSaving] = useState(false);
@@ -93,6 +94,17 @@ const ProductTable = ({ products, loading, onAddProduct, onDeleteProduct, onUpda
 
   const renderCell = (field, rowId) => {
     if (editingId === rowId) {
+      if (field.key === 'productFamily') {
+        return (
+          <ProductFamilyDropdown
+            value={editData[field.key] || ''}
+            onChange={(value) => handleChange(field.key, value)}
+            families={families}
+            disabled={saving}
+            autoFocus={false}
+          />
+        );
+      }
       return (
         <input
           type="text"
@@ -192,16 +204,26 @@ const ProductTable = ({ products, loading, onAddProduct, onDeleteProduct, onUpda
               <tr className="editing new-row">
                 {FIELDS.map(field => (
                   <td key={field.key}>
-                    <input
-                      type="text"
-                      value={editData[field.key] || ''}
-                      placeholder={field.placeholder}
-                      onChange={(e) => handleChange(field.key, e.target.value)}
-                      onKeyDown={(e) => handleKeyDown(e, 'new')}
-                      className="edit-input"
-                      disabled={saving}
-                      autoFocus={field.key === 'productName'}
-                    />
+                    {field.key === 'productFamily' ? (
+                      <ProductFamilyDropdown
+                        value={editData[field.key] || ''}
+                        onChange={(value) => handleChange(field.key, value)}
+                        families={families}
+                        disabled={saving}
+                        autoFocus={false}
+                      />
+                    ) : (
+                      <input
+                        type="text"
+                        value={editData[field.key] || ''}
+                        placeholder={field.placeholder}
+                        onChange={(e) => handleChange(field.key, e.target.value)}
+                        onKeyDown={(e) => handleKeyDown(e, 'new')}
+                        className="edit-input"
+                        disabled={saving}
+                        autoFocus={field.key === 'productName'}
+                      />
+                    )}
                   </td>
                 ))}
                 <td>{renderActions('new')}</td>

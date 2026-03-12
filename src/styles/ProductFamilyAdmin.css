@@ -1,0 +1,333 @@
+.product-family-admin {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-bg-light);
+}
+
+.product-family-admin .manager-header {
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-gray-200);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.product-family-admin .manager-header h1 {
+  margin: 0 0 var(--spacing-sm) 0;
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-gray-900);
+}
+
+.product-family-admin .subtitle {
+  margin: 0;
+  font-size: var(--font-size-base);
+  color: var(--color-gray-500);
+}
+
+.product-family-admin .back-button {
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--color-gray-100);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.product-family-admin .back-button:hover {
+  background-color: var(--color-gray-200);
+}
+
+.product-family-admin .manager-content {
+  flex: 1;
+  padding: var(--spacing-xl);
+}
+
+.product-family-admin .error-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-error-light);
+  border: 1px solid var(--color-error);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-error);
+}
+
+.product-family-admin .error-banner button {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--color-error);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.product-family-admin .error-banner button:hover {
+  background-color: var(--color-error-dark);
+}
+
+.product-family-admin .table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.product-family-admin .table-header h2 {
+  margin: 0;
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-gray-900);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.product-family-admin .count {
+  font-size: var(--font-size-base);
+  background-color: var(--color-blue-light);
+  color: var(--color-blue-primary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-md);
+  font-weight: var(--font-weight-medium);
+}
+
+.product-family-admin .row-error {
+  background-color: var(--color-error-light);
+  border: 1px solid var(--color-error);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  color: var(--color-error);
+  font-size: var(--font-size-sm);
+}
+
+.product-family-admin .table-wrapper {
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.product-family-admin .families-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-base);
+}
+
+.product-family-admin .families-table thead {
+  background-color: var(--color-gray-50);
+  border-bottom: 2px solid var(--color-gray-200);
+}
+
+.product-family-admin .families-table th {
+  padding: var(--spacing-md);
+  text-align: left;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-700);
+}
+
+.product-family-admin .families-table tbody tr {
+  border-bottom: 1px solid var(--color-gray-200);
+  transition: background-color var(--transition-fast);
+}
+
+.product-family-admin .families-table tbody tr:hover:not(.editing) {
+  background-color: var(--color-gray-50);
+}
+
+.product-family-admin .families-table tbody tr.editing {
+  background-color: var(--color-blue-light);
+}
+
+.product-family-admin .families-table td {
+  padding: var(--spacing-md);
+  color: var(--color-gray-900);
+}
+
+.product-family-admin .edit-input {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-blue-primary);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-family: var(--font-family-base);
+}
+
+.product-family-admin .edit-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-blue-light);
+}
+
+.product-family-admin .edit-input:disabled {
+  background-color: var(--color-gray-100);
+  cursor: not-allowed;
+}
+
+.product-family-admin .actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.product-family-admin .btn {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.product-family-admin .btn-add {
+  background-color: var(--color-blue-primary);
+  color: var(--color-white);
+}
+
+.product-family-admin .btn-add:hover:not(:disabled) {
+  background-color: var(--color-blue-dark);
+}
+
+.product-family-admin .btn-add:disabled {
+  background-color: var(--color-gray-300);
+  cursor: not-allowed;
+}
+
+.product-family-admin .btn-edit {
+  background-color: var(--color-blue-primary);
+  color: var(--color-white);
+}
+
+.product-family-admin .btn-edit:hover:not(:disabled) {
+  background-color: var(--color-blue-dark);
+}
+
+.product-family-admin .btn-edit:disabled {
+  background-color: var(--color-gray-300);
+  cursor: not-allowed;
+}
+
+.product-family-admin .btn-save {
+  background-color: var(--color-success);
+  color: var(--color-white);
+}
+
+.product-family-admin .btn-save:hover:not(:disabled) {
+  background-color: #15803d;
+}
+
+.product-family-admin .btn-save:disabled {
+  background-color: var(--color-gray-300);
+  cursor: not-allowed;
+}
+
+.product-family-admin .btn-cancel {
+  background-color: var(--color-gray-300);
+  color: var(--color-gray-900);
+}
+
+.product-family-admin .btn-cancel:hover:not(:disabled) {
+  background-color: var(--color-gray-400);
+}
+
+.product-family-admin .btn-cancel:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.product-family-admin .btn-delete {
+  background-color: var(--color-error);
+  color: var(--color-white);
+}
+
+.product-family-admin .btn-delete:hover:not(:disabled) {
+  background-color: #b91c1c;
+}
+
+.product-family-admin .btn-delete:disabled {
+  background-color: var(--color-gray-300);
+  cursor: not-allowed;
+}
+
+.product-family-admin .loading-cell,
+.product-family-admin .empty-cell {
+  text-align: center;
+  padding: var(--spacing-xl);
+  color: var(--color-gray-500);
+  font-style: italic;
+}
+
+.product-family-admin .new-row {
+  background-color: var(--color-blue-light);
+}
+
+@media (max-width: 1023px) {
+  .product-family-admin .manager-header {
+    padding: var(--spacing-lg);
+  }
+
+  .product-family-admin .table-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+  }
+
+  .product-family-admin .btn-add {
+    width: 100%;
+  }
+
+  .product-family-admin .actions {
+    flex-direction: column;
+  }
+
+  .product-family-admin .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .product-family-admin {
+    min-height: auto;
+  }
+
+  .product-family-admin .manager-header {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+
+  .product-family-admin .back-button {
+    width: 100%;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .product-family-admin .manager-header h1 {
+    font-size: var(--font-size-2xl);
+  }
+
+  .product-family-admin .manager-content {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+
+  .product-family-admin .families-table {
+    font-size: var(--font-size-sm);
+  }
+
+  .product-family-admin .families-table th,
+  .product-family-admin .families-table td {
+    padding: var(--spacing-sm);
+  }
+
+  .product-family-admin .edit-input {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-sm);
+  }
+
+  .product-family-admin .btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-xs);
+  }
+}
