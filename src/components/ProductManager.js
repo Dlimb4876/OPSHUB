@@ -24,7 +24,7 @@ const mapToDb = (product) => ({
   overhaul_time: product.overhaulTime,
 });
 
-const ProductManager = () => {
+const ProductManager = ({ onBack }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -87,6 +87,11 @@ const ProductManager = () => {
   return (
     <div className="product-manager">
       <header className="manager-header">
+        {onBack && (
+          <button className="back-button" onClick={onBack}>
+            ← Back
+          </button>
+        )}
         <h1>Product Manager</h1>
         <p className="subtitle">Manage your product inventory</p>
       </header>
