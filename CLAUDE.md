@@ -71,3 +71,15 @@ These rules are non-negotiable and apply to every change made in this repository
 - No `any` casting or `eslint-disable` comments without a written justification in the same line.
 - Environment variables for Supabase credentials stay in `.env` and are never committed.
 - New features ship with the minimum code required — no speculative abstractions or future-proofing until the need is real.
+
+---
+
+## 7. Deployment — GitHub Actions Only
+
+- **Single deployment method.** Use only the GitHub Actions workflow (`.github/workflows/static.yml`). Never use npm packages like `gh-pages`.
+- **Remove conflicting config:**
+  - Do NOT include `"homepage"` field in `package.json` (it conflicts with Actions-based deployment)
+  - Do NOT include `gh-pages` in `devDependencies`
+  - Do NOT include `predeploy` or `deploy` scripts
+- **BrowserRouter basename:** Keep `basename="/OPSHUB"` in `src/index.js` so routes work correctly on GitHub Pages.
+- **Reason:** Multiple deployment methods cause GitHub Pages to serve from the wrong branch (e.g., `main` instead of the built app), resulting in the README being displayed instead of the React app.
